@@ -1,0 +1,25 @@
+{
+  "name": "semfinal-project-83",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type":"commojs",
+  "scripts": {
+    "start":"node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jahongir110311/semfinal-project-83.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jahongir110311/semfinal-project-83/issues"
+  },
+  "homepage": "https://github.com/Jahongir110311/semfinal-project-83#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
