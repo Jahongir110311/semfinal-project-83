@@ -150,10 +150,10 @@ bot.on("callback_query", (query) => {
 
 • Boshlang‘ich, Elementary, Pre-Intermediate, Intermediate darajalar  
 • Haftasiga 3 marotaba dars  
-• 1 oy – 280 000 so'm  
+• 1 oyiga – 300 000 so'm  
 • Sertifikat beriladi  
 
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
       `,
       { parse_mode: "Markdown" }
     );
@@ -167,9 +167,9 @@ Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
 
 • Grammatikadan tortib erkin suhbatgacha  
 • Haftasiga 3 marotaba dars  
-• 1 oy – 260 000 so'm  
+• 1 oyiga – 350 000 so'm  
 
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
       `,
       { parse_mode: "Markdown" }
     );
@@ -183,9 +183,9 @@ Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
 
 • Maktab o‘quvchilari uchun kuchli tizim  
 • Olimpiada tayyorlov mavjud  
-• 1 oy – 300 000 so'm  
+• 1 oyiga – 300 000 so'm  
 
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
       `,
       { parse_mode: "Markdown" }
     );
@@ -200,9 +200,9 @@ Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
 • Python, Web (HTML, CSS, JS)  
 • 0 dan IT mutaxassislikka yo‘naltiramiz  
 • Amaliy loyihalar bilan o‘qitiladi  
-• 1 oy – 350 000 so'm  
+• 1 oyiga – 350 000 so'm  
 
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
       `,
       { parse_mode: "Markdown" }
     );
@@ -216,9 +216,9 @@ Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
 
 • Photoshop, Illustrator, Figma  
 • Amaliy portfolio yig‘ish  
-• 1 oy – 330 000 so'm  
+• 1 oyiga – 330 000 so'm  
 
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
       `,
       { parse_mode: "Markdown" }
     );
