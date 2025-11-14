@@ -138,4 +138,94 @@ Kerakli bo‘limni tanlash uchun:
   }
 });
 
+bot.on("callback_query", (query) => {
+  const chatId = query.message.chat.id;
+  const data = query.data;
+
+  if (data === "course_english") {
+    bot.sendMessage(
+      chatId,
+      `
+🇬🇧 *Ingliz tili kursi*
+
+• Boshlang‘ich, Elementary, Pre-Intermediate, Intermediate darajalar  
+• Haftasiga 3 marotaba dars  
+• 1 oy – 280 000 so'm  
+• Sertifikat beriladi  
+
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+      `,
+      { parse_mode: "Markdown" }
+    );
+  }
+
+  else if (data === "course_russian") {
+    bot.sendMessage(
+      chatId,
+      `
+🇷🇺 *Rus tili kursi*
+
+• Grammatikadan tortib erkin suhbatgacha  
+• Haftasiga 3 marotaba dars  
+• 1 oy – 260 000 so'm  
+
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+      `,
+      { parse_mode: "Markdown" }
+    );
+  }
+
+  else if (data === "course_math") {
+    bot.sendMessage(
+      chatId,
+      `
+🧮 *Matematika kursi*
+
+• Maktab o‘quvchilari uchun kuchli tizim  
+• Olimpiada tayyorlov mavjud  
+• 1 oy – 300 000 so'm  
+
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+      `,
+      { parse_mode: "Markdown" }
+    );
+  }
+
+  else if (data === "course_programming") {
+    bot.sendMessage(
+      chatId,
+      `
+💻 *Dasturlash kurslari*
+
+• Python, Web (HTML, CSS, JS)  
+• 0 dan IT mutaxassislikka yo‘naltiramiz  
+• Amaliy loyihalar bilan o‘qitiladi  
+• 1 oy – 350 000 so'm  
+
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+      `,
+      { parse_mode: "Markdown" }
+    );
+  }
+
+  else if (data === "course_design") {
+    bot.sendMessage(
+      chatId,
+      `
+🎨 *Grafik dizayn kursi*
+
+• Photoshop, Illustrator, Figma  
+• Amaliy portfolio yig‘ish  
+• 1 oy – 330 000 so'm  
+
+Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish
+      `,
+      { parse_mode: "Markdown" }
+    );
+  }
+
+  bot.answerCallbackQuery(query.id);
+});
+
+
 console.log("Bot ishga tushdi...");
