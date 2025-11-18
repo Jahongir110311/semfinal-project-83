@@ -1,20 +1,37 @@
 const TelegramBot = require("node-telegram-bot-api");
+const { config } = require("dotenv");
+config();
 
-const TOKEN = "7991261995:AAGm6kv9v3q9EHsOLa2K87cs3R6NgS7iLuw";
+const TOKEN = process.env.BOT_TOKEN;
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
+let usersData = [
+  { chatId: 6953156991, firstName: "𝘙𝘌𝘓𝘓𝘐𝘟𝘚", admin: true },
+  { chatId: 7196631754, firstName: "komi1ova_1104", admin: true },
+  { chatId: 7665738687, firstName: "Ilyosbek", admin: true },
+  { chatId: 7484667390, firstName: "_Makhliyo🎀", admin: true },
+  { chatId: 7863501182, firstName: "Bilolbek", admin: true },
+  { chatId: 7355171161, firstName: "Baxtiyorov Jahongir", admin: true },
+  { chatId: 7853143555, firstName: "ㅤㅤㅤㅤㅤㅤ", admin: true },
+  { chatId: 5952289464, firstName: "Farruxbekㅤ", admin: true },
+  { chatId: 8468366787, firstName: "shkhnz_o7", admin: true },
+  { chatId: 875072364, firstName: "Abbosbek", admin: true },
+];
+
 bot.on("message", (msg) => {
-  console.log(msg);
+  // console.log(msg);
   const chatId = msg.chat.id;
   const text = msg.text;
   const firstName = msg.chat.first_name;
 
-  if (text == "/start") {
+  //   bot.sendMessage(chatId, text);
+
+  if (text == "/start" || text == "Boshlash 🔥") {
     bot.sendMessage(
       chatId,
       `
-👋 Assalomu alaykum, ${firstName}!
+    👋 Assalomu alaykum, ${firstName}!
 
 📚 100x o‘quv markazining rasmiy botiga xush kelibsiz!
 
@@ -24,7 +41,8 @@ Bu bot orqali siz:
 • Jadval va to‘lovlar haqida ma’lumot olasiz  
 
 Quyidagi menyudan kerakli bo‘limni tanlang 👇
-      `,
+
+    `,
       {
         reply_markup: {
           keyboard: [
@@ -36,13 +54,11 @@ Quyidagi menyudan kerakli bo‘limni tanlang 👇
         },
       }
     );
-  }
-
-  else if (text == "📚 Kurslar") {
+  } else if (text == "📚 Kurslar" || text == "⬅️ Orqaga") {
     bot.sendMessage(
       chatId,
       `
-🎓 Bizning o‘quv markazimizda quyidagi kurslar mavjud:
+    🎓 Bizning o‘quv markazimizda quyidagi kurslar mavjud:
 
 1️⃣ Ingliz tili  
 2️⃣ Rus tili  
@@ -50,8 +66,9 @@ Quyidagi menyudan kerakli bo‘limni tanlang 👇
 4️⃣ Dasturlash (Python, Web)  
 5️⃣ Grafik dizayn  
 
-👇 Quyidagi kurslardan birini tanlang:
-      `,
+👇 Quyidagi kurslardan birini tanlang va batafsil ma’lumot oling:
+
+    `,
       {
         reply_markup: {
           inline_keyboard: [
@@ -64,168 +81,81 @@ Quyidagi menyudan kerakli bo‘limni tanlang 👇
         },
       }
     );
-  }
-
-else if (text === "✍️ Ro‘yxatdan o‘tish") {
-  bot.sendMessage(
-    chatId,
-    `
-✍️ Ro‘yxatdan o‘tish uchun quyidagi ma’lumotlarni yuboring:
-
-• Ismingiz  
-• Yosh  
-• Qaysi kursga yozilmoqchisiz?  
-• Telefon raqamingiz (+998 ***) 
-
-    `
-  );
-}
- else if (text == "ℹ️ Markaz haqida") {
-    bot.sendMessage(
-      chatId,
-      `
-ℹ️ *100x o‘quv markazi haqida:*
-
-📍 Manzil: Xorazm viloyati, Xiva shahri  
-⏰ Ish vaqti: 09:00 – 20:00  
-📞 Telefon: +998 20 003 15 45  
-
-Biz zamonaviy o‘qitish tizimi bilan 4+ yillik tajribaga ega IT va Til markazimiz!
-      `,
-      { parse_mode: "Markdown" }
-    );
-  }
-
-  else if (text == "💬 Fikr bildirish") {
-    bot.sendMessage(
-      chatId,
-      "💬 Fikringizni yozib yuboring — biz uchun juda muhim!"
-    );
-  }
-
-  else if (text == "❓ Yordam") {
-    bot.sendMessage(
-      chatId,
-      `
-❓ *Yordam bo‘limi*
-
-Agar bot ishlamayotgan bo‘lsa yoki muammo bo‘lsa:
-
-👉 Admin: @username
-      `,
-      { parse_mode: "Markdown" }
-    );
-  }
-
-  else if (text == "/location") {
-    const latitude = 41.3870256;
-    const longitude = 60.3626525;
+  } else if (text == "ℹ️ Markaz haqida") {
+    const latitude = 41.3781989;
+    const longitude = 60.3694056;
 
     bot.sendMessage(chatId, "📍 Bizning o‘quv markaz joylashuvi:");
     bot.sendLocation(chatId, latitude, longitude);
-  }
+  } else if (text == "✍️ Ro‘yxatdan o‘tish") {
+    const userExists = usersData.some((user) => user.chatId === chatId);
+    console.log("exists: ", userExists);
+    if (!userExists) {
+      usersData = [
+        ...usersData,
+        { chatId: chatId, firstName: firstName, admin: false },
+      ];
+    }
 
-  else {
+    console.log(usersData);
+    bot.sendMessage(chatId, `Tabriklaymiz, siz ro'yhatdan o'tdingiz! ✅`);
+
+    usersData.forEach((user) => {
+      console.log(`user: ${user.firstName}`);
+      if (user.admin == true) {
+        bot.sendMessage(
+          user.chatId,
+          `Yangi xabar ✅\n-User: ${firstName}\n-chatId:${chatId}\n**********`
+        );
+      }
+    });
+  } else {
     bot.sendMessage(
       chatId,
       `
-⚠️ Kechirasiz, men sizning xabaringizni tushunmadim.
+    ⚠️ Kechirasiz, men sizning xabaringizni tushunmadim.
 
-Kerakli bo‘limni tanlash uchun:
+Iltimos, quyidagi tugmani bosing 👇
 /start
-      `
+    `
     );
   }
 });
 
 bot.on("callback_query", (query) => {
+  console.log(query);
   const chatId = query.message.chat.id;
   const data = query.data;
 
-  if (data === "course_english") {
+  if (data == "course_english") {
     bot.sendMessage(
       chatId,
       `
-🇬🇧 *Ingliz tili kursi*
+    🇬🇧 Ingliz tili kursi haqida:
 
-• Boshlang‘ich, Elementary, Pre-Intermediate, Intermediate darajalar  
-• Haftasiga 3 marotaba dars  
-• 1 oyiga – 300 000 so'm  
-• Sertifikat beriladi  
+📆 Davomiyligi: 3 oy  
+⏰ Darslar: Haftasiga 3 marta (1,5 soatdan)  
+👨‍🏫 O‘qituvchi: Tajribali filologlar  
+💰 Narxi: 350 000 so‘m / oy
 
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
-      `,
-      { parse_mode: "Markdown" }
+✍️ Agar sizni bu kurs qiziqtirsa, “Ro‘yxatdan o‘tish” tugmasini bosing.
+
+    `,
+      {
+        reply_markup: {
+          keyboard: [
+            [{ text: "✍️ Ro‘yxatdan o‘tish" }],
+            [{ text: "⬅️ Orqaga" }],
+          ],
+          resize_keyboard: true,
+        },
+      }
     );
+  } else if (data == "course_russian") {
+    bot.sendMessage(chatId, `Russian`);
   }
 
-  else if (data === "course_russian") {
-    bot.sendMessage(
-      chatId,
-      `
-🇷🇺 *Rus tili kursi*
-
-• Grammatikadan tortib erkin suhbatgacha  
-• Haftasiga 3 marotaba dars  
-• 1 oyiga – 350 000 so'm  
-
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
-      `,
-      { parse_mode: "Markdown" }
-    );
-  }
-
-  else if (data === "course_math") {
-    bot.sendMessage(
-      chatId,
-      `
-🧮 *Matematika kursi*
-
-• Maktab o‘quvchilari uchun kuchli tizim  
-• Olimpiada tayyorlov mavjud  
-• 1 oyiga – 300 000 so'm  
-
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
-      `,
-      { parse_mode: "Markdown" }
-    );
-  }
-
-  else if (data === "course_programming") {
-    bot.sendMessage(
-      chatId,
-      `
-💻 *Dasturlash kurslari*
-
-• Python, Web (HTML, CSS, JS)  
-• 0 dan IT mutaxassislikka yo‘naltiramiz  
-• Amaliy loyihalar bilan o‘qitiladi  
-• 1 oyiga – 350 000 so'm  
-
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
-      `,
-      { parse_mode: "Markdown" }
-    );
-  }
-
-  else if (data === "course_design") {
-    bot.sendMessage(
-      chatId,
-      `
-🎨 *Grafik dizayn kursi*
-
-• Photoshop, Illustrator, Figma  
-• Amaliy portfolio yig‘ish  
-• 1 oyiga – 330 000 so'm  
-
-Ro‘yxatdan o‘tish uchun: ✍️ Ro‘yxatdan o‘tish tugmasini bosing
-      `,
-      { parse_mode: "Markdown" }
-    );
-  }
-
-  bot.answerCallbackQuery(query.id);
+  // bot.sendMessage(chatId, data);
 });
-
 
 console.log("Bot ishga tushdi...");
