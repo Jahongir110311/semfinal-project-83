@@ -1,10 +1,6 @@
 import TelegramBot from "node-telegram-bot-api";
 import { config } from "dotenv";
 
-import { onStart } from "./handlers/start.js";
-import { onCourses } from "./handlers/courses.js";
-import { onRegister } from "./handlers/register.js";
-import { onCallback } from "./handlers/callbacks.js";
 
 config();
 
