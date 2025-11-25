@@ -1,10 +1,19 @@
 import TelegramBot from "node-telegram-bot-api";
 import { config } from "dotenv";
-
-
 config();
+import mongoose from "mongoose";
+
 
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+
+mongoose
+.connect(process.env.MONGO_URI
+).then(()=>{
+  console.log(`Db is connected successfully!`);
+})
+.catch(()=>{
+  console.log(`Error: db is not connected...`);
+})
 
 bot.on("message", (msg) => {
   const chatId = msg.chat.id;
